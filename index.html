@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+           background-image: url("bgbody.png");
+           background-size: cover;
+            margin: 0;
+            color: rgb(0, 0, 0);
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #ffffff;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .login-container input {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #cac9c9;
+            color: white;
+            font-size: 1em;
+        }
+
+
+        .login-container button {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #000000;
+            color: white;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+
+        .login-container button:hover {
+            background-color: #777;
+        }
+
+        .states-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #e6e1e1;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            display: none;
+            text-align: center;
+        }
+
+        .profile-container {
+            margin-bottom: 20px;
+        }
+
+        .profile-container h2 {
+            margin: 10px 0;
+            font-size: 1.5em;
+        }
+
+        .profile-container p {
+            margin: 5px 0;
+            font-size: 1.2em;
+        }
+        .states-container {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .states-container button {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+
+        .states-container button:hover {
+            background-color: #585555;
+        }
+
+        #errorsucces {
+            position: absolute;
+            top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100px;
+        }
+
+        .error {
+            background-color: red;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+        }
+
+        .succes {
+            background-color: rgb(23, 129, 57);
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+        }
+        #stats{
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+        .xp{
+            width: 150px;
+            height: 100px;
+            background-color: #e6e1e1;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            color: black;
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+            display: none;
+        }
+        .lvl{
+            width: 150px;
+            justify-content: center;
+            height: 100px;
+            background-color: #e6e1e1;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            color: black;
+            padding: 20px;
+            text-align: center;
+            align-items: center;
+            gap: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login to see your statistics</h2>
+        <input type="text" id="username" placeholder="Username or Email">
+        <input type="password" id="password" placeholder="Password">
+        <button id="loginBtn">Login</button>
+    </div>
+    <div id="stats">
+        <div class="states-container">
+            <div class="profile-container" id="profile-container">
+                <h2>Welcome, <span id="username-display"></span></h2>
+                <button id="logout">Logout</button>
+            </div>
+        </div>
+        <div class="xp">
+            <h2 id="pxp" style="display: none; color: rgb(29, 212, 29);">XP :</h2><h3 id="xp"></h3>
+        </div>
+        <div class="lvl">
+            <h2 id="plvl" style="display: none; color: rgb(43, 43, 180);">level :</h2><h3 id="level"></h3>
+        </div>
+        <div>
+            <h3 id="txt" style="display: none; color: white; text-align: center; align-items: center; justify-content: center;"></h3>
+            <svg id="svg" width="600" height="300" xmlns="http://www.w3.org/2000/svg" style="display: none; background-image: url('svgbg.jpg'); background-size: cover; border-radius: 5px; padding-right: 10px;"></svg>
+        </div>
+        <div>
+            <h3 id="audit" style="display: none; color: white; text-align: center; align-items: center; justify-content: center;"></h3>
+            <svg id="secondsvg" width="500" height="100" xmlns="http://www.w3.org/2000/svg" style="display: none; background-image: url('svgbg.jpg'); background-size: cover; border-radius: 5px; padding-right: 10px;"></svg>
+        </div>
+    </div>
+    
+    <div id="errorsucces"></div>
+
+    <script type="module" src="scripts/login.js"></script>
+</body>
+</html>
