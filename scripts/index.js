@@ -64,7 +64,12 @@ export async function Data() {
         const ulevel = document.getElementById("level")
         console.log("graphqL data:", userinfo)
         uname.textContent = userinfo.firstName + " " + userinfo.lastName
-        uxp.textContent = Math.floor(userinfo.transactions_aggregate.aggregate.sum.amount / 1000) + "KB"
+        let theXp = (userinfo.transactions_aggregate.aggregate.sum.amount +"").length
+        if (theXp==7){
+            uxp.textContent =(userinfo.transactions_aggregate.aggregate.sum.amount / 1000000).toFixed(1) + "MB"
+        }else{
+            uxp.textContent = Math.floor(userinfo.transactions_aggregate.aggregate.sum.amount / 1000) + "KB"
+        }
         ulevel.textContent = userinfo.transactions[0].amount
         const worktimes = {}
         // fill the worktimes object with peers and their wok times.

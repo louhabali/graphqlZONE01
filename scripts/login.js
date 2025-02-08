@@ -21,8 +21,10 @@ function handleLogin() {
                     }
                 })
 
-                const data = await response.json();
+                const data = await response.json()
                 if (response.ok) {
+                    console.log(data);
+                    
                     showAlert("Logged in successfully", "succes")
                     localStorage.setItem('jwt', data)
                     handledata()
@@ -30,6 +32,7 @@ function handleLogin() {
                     showAlert("Invalid credentials", "error")
                 }
             } catch (error) {
+                console.log(error)
                 showAlert("Error logging in", "error")
             }
         }
