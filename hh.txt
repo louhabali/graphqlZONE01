@@ -1,9 +1,0 @@
-graphql is a query language that facilitate access to specific infos of a data 
-one endpoint is enough to get data 
-a query can give you full control
-
-
-const user = result.data.user[0];
-    document.getElementById("username-display").textContent = user.login;
-    document.getElementById("xp").textContent = user.xp;
-    document.getElementById("grades").textContent = user.grades;
