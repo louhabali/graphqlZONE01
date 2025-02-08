@@ -2,7 +2,10 @@ import { Data } from "/scripts/index.js"
 
 function handleLogin() {
     let jwt = localStorage.getItem("jwt")
-    if (jwt) showelements() 
+    if (jwt){
+        showelements() 
+        handledata()
+    } 
 
     document.getElementById("loginBtn").addEventListener("click", () => {
         async function login() {
@@ -21,7 +24,8 @@ function handleLogin() {
                 const data = await response.json();
                 if (response.ok) {
                     showAlert("Logged in successfully", "succes")
-                    handledata(data)
+                    localStorage.setItem('jwt', data)
+                    handledata()
                 } else {
                     showAlert("Invalid credentials", "error")
                 }
@@ -34,21 +38,20 @@ function handleLogin() {
     })
 }
 
-function handledata(data) {
-    localStorage.setItem('jwt', data)
+function handledata() {
     // show stats and hide login container
     showelements()
-
     Data()
     document.getElementById("logout").addEventListener("click", handleLogout)
 }
 
 function handleLogout() {
+    showAlert("Logged out successfully", "succes")
     document.getElementById("stats").style.display = "none"
     document.querySelector(".login-container").style.display = "block"
     document.querySelector(".states-container").style.display = "none"
     localStorage.removeItem('jwt')
-    showAlert("Logged out successfully", "succes")
+    
 }
 
 function showAlert(message, type) {
@@ -56,6 +59,7 @@ function showAlert(message, type) {
     loginalert.textContent = message
     loginalert.classList.remove("error", "succes")
     loginalert.classList.add(type)
+    loginalert.style.display = "flex"
     setTimeout(() => {
         loginalert.style.display = "none"
     }, 2000)

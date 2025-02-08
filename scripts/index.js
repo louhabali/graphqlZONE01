@@ -57,17 +57,17 @@ export async function Data() {
             })
         })
 
-        const result = await response.json();
+        const result = await response.json()
         let userinfo = result.data.user[0]
         const uname = document.getElementById("username-display")
         const uxp = document.getElementById("xp")
         const ulevel = document.getElementById("level")
-
-        console.log("GraphQL response data: ", userinfo)
+        console.log("graphqL data:", userinfo)
         uname.textContent = userinfo.firstName + " " + userinfo.lastName
         uxp.textContent = Math.floor(userinfo.transactions_aggregate.aggregate.sum.amount / 1000) + "KB"
         ulevel.textContent = userinfo.transactions[0].amount
         const worktimes = {}
+        // fill the worktimes object with peers and their wok times.
         for (let g of userinfo.finished_projects) {
             for (let m of g.group.members) {
                 const userLogin = m.userLogin
@@ -85,6 +85,7 @@ export async function Data() {
         let svg = document.getElementById("svg")
         let xPos = 20
         console.log(worktimes)
+        // lines drawing
         const xAxis = document.createElementNS("http://www.w3.org/2000/svg", "line")
         xAxis.setAttribute("x1", 10)
         xAxis.setAttribute("y1", 290)
@@ -102,11 +103,12 @@ export async function Data() {
         yAxis.setAttribute("stroke", "white")
         yAxis.setAttribute("stroke-width", "2")
         svg.appendChild(yAxis)
-        Object.keys(worktimes).forEach((mmbr, ind) => {
-            const rectheight = worktimes[mmbr] * 25
+        // rect drawing.
+        Object.keys(worktimes).forEach((mmbr, val) => {
+            const rectheight = worktimes[mmbr] * 15
             const myrect = document.createElementNS("http://www.w3.org/2000/svg", "rect")
             myrect.setAttribute("x", xPos)
-            myrect.setAttribute("y", 290 - rectheight)
+            myrect.setAttribute("y",290-rectheight)
             myrect.setAttribute("width", 40);
             myrect.setAttribute("height", rectheight)
             myrect.setAttribute("fill", `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`)
@@ -115,15 +117,12 @@ export async function Data() {
 
             const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
             const textX = xPos - 25
-            const textY = 290 - rectheight - 5
+            const textY = 285 - rectheight
 
             text.setAttribute("x", textX)
             text.setAttribute("y", textY)
-            text.setAttribute("text-anchor", "start")
-            text.setAttribute("dy", "0")
             text.setAttribute("fill", "white")
             text.textContent = `${mmbr}-${worktimes[mmbr]}`
-
             text.setAttribute("transform", `rotate(-90, ${textX}, ${textY})`)
             svg.appendChild(text)
         })
@@ -133,12 +132,12 @@ export async function Data() {
         const barWidth = 500;
         const barHeight = 100;
 
-        // Calculate  widths
+        // calculate widths of each bar
         const total = totalUp + totalDown
         const upWidth = (totalUp / total) * barWidth
         const downWidth = (totalDown / total) * barWidth
 
-        // Calculate percentages
+        // calculate percentages
         const upPercentage = ((totalUp / total) * 100).toFixed(1) + "% UP"
         const downPercentage = ((totalDown / total) * 100).toFixed(1) + "% DOWN"
 
@@ -147,7 +146,7 @@ export async function Data() {
         downBar.setAttribute("y", 0)
         downBar.setAttribute("width", downWidth)
         downBar.setAttribute("height", barHeight)
-        downBar.setAttribute("fill", "red")
+        downBar.setAttribute("fill", "black")
         secondsvg.appendChild(downBar)
 
         const upBar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
@@ -155,12 +154,12 @@ export async function Data() {
         upBar.setAttribute("y", 0)
         upBar.setAttribute("width", upWidth)
         upBar.setAttribute("height", barHeight)
-        upBar.setAttribute("fill", "green")
+        upBar.setAttribute("fill", "blue")
         secondsvg.appendChild(upBar)
         // write percentage of down
         const downLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
         downLabel.setAttribute("x", downWidth / 2)
-        downLabel.setAttribute("y", 50)
+        downLabel.setAttribute("y", 60)
         downLabel.setAttribute("text-anchor", "middle")
         downLabel.setAttribute("fill", "white")
         downLabel.setAttribute("font-size", "20px")
@@ -169,7 +168,7 @@ export async function Data() {
         // write percentage of up
         const upLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
         upLabel.setAttribute("x", downWidth + upWidth / 2)
-        upLabel.setAttribute("y", 50)
+        upLabel.setAttribute("y", 60)
         upLabel.setAttribute("text-anchor", "middle")
         upLabel.setAttribute("fill", "white")
         upLabel.setAttribute("font-size", "20px")
