@@ -3,7 +3,7 @@
 This project is a **GraphQL-powered profile page** that displays user information retrieved from the **Zone01 Oujda API**.
 
 ## online site.
-🔗 **[Live Site](https://lambent-lokum-7756e9.netlify.app/)**
+🔗 **[Live Site] https://lambent-lokum-7756e9.netlify.app/
 
 ## 📌 Features
 - 🔑 **Authentication**: Users can log in using their **username/password** or **email/password**.
