@@ -50,6 +50,8 @@ function handledata() {
 
 function handleLogout() {
     showAlert("Logged out successfully", "succes")
+    document.getElementById("username").value = ""
+     document.getElementById("password").value = ""
     document.getElementById("stats").style.display = "none"
     document.querySelector(".login-container").style.display = "block"
     document.querySelector(".states-container").style.display = "none"

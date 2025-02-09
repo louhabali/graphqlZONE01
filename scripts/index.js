@@ -88,6 +88,7 @@ export async function Data() {
         }
 
         let svg = document.getElementById("svg")
+        svg.innerHTML =""
         let xPos = 20
         console.log(worktimes)
         // lines drawing
@@ -110,7 +111,7 @@ export async function Data() {
         svg.appendChild(yAxis)
         // rect drawing.
         Object.keys(worktimes).forEach((mmbr, val) => {
-            const rectheight = worktimes[mmbr] * 15
+            const rectheight = worktimes[mmbr] * 10
             const myrect = document.createElementNS("http://www.w3.org/2000/svg", "rect")
             myrect.setAttribute("x", xPos)
             myrect.setAttribute("y",290-rectheight)
@@ -132,6 +133,7 @@ export async function Data() {
             svg.appendChild(text)
         })
         const secondsvg = document.getElementById("secondsvg");
+        secondsvg.innerHTML =""
         const totalUp = userinfo.totalUp
         const totalDown = userinfo.totalDown
         const barWidth = 500;
