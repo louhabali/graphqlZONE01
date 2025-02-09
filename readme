@@ -1,0 +1,19 @@
+# 📊 GraphQL Profile Page.
+
+This project is a **GraphQL-powered profile page** that displays user information retrieved from the **Zone01 Oujda API**.
+
+## online site.
+🔗 **[Live Site](https://lambent-lokum-7756e9.netlify.app/)**
+
+## 📌 Features
+- 🔑 **Authentication**: Users can log in using their **username/password** or **email/password**.
+- 📜 **GraphQL Queries**: Retrieves **user profile data**, **XP**, **level**, **peers work time**, **audits**, and more.
+- 📊 **SVG-based Graphs**: Displays **statistics** (e.g., times that you worked with your peers, audit analytics).
+- 📈 **Dynamic & Interactive UI**: Provides insights into user achievements.
+
+## 🛠️ Technologies Used
+- **GraphQL** for querying specific data
+- **JWT Authentication** for secure access
+- **HTML / CSS / JavaScript**
+- **SVG** for data visualization
+- **Netlify** for hosting
